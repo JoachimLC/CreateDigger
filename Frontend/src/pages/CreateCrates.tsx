@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/navbar';
+import SpotifyLogin from '../components/SpotifyLogin';
 
 const CreateCrates = () => {
     return (
@@ -11,6 +12,7 @@ const CreateCrates = () => {
             Start building your personalized vinyl-ready music collection. Choose a playlist, generate a crate, and enjoy!
           </p>
         </div>
+        <SpotifyLogin/>
       </div>
     );
   };
