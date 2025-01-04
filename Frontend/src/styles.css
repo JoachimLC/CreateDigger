@@ -1,0 +1,263 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+  font-size: larger;
+  background-color: #ffffff; /* Explicitly define the background color */
+
+  
+}
+
+
+img{
+  size: 10px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navbar */
+.navbar {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 80px;
+  color: white;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.navbar.landing {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background: transparent; /* Transparent for the landing page */
+}
+
+.navbar.slim {
+  position: fixed;
+  background-color: rgba(51, 51, 51, 0.8); /* Semi-translucent black */
+  height: 7rem;
+  top: 0;
+  width: 100%;
+  padding: 40px 80px;
+  backdrop-filter: blur(10px); /* Optional: Adds a blur effect for modern browsers */
+  z-index: 10; /* Ensures it stays above other content */
+}
+
+
+
+.logo {
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  position: relative; 
+  cursor: pointer;
+}
+
+.nav-links li::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px; 
+  width: 0; 
+  height: 2px; 
+  background-color: white;
+  transition: width 0.3s ease; 
+}
+
+.nav-links li:hover::after {
+  width: 100%; 
+}
+
+/* Hero Section */
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.9), 
+      rgba(82, 79, 79, 0.3) 
+    ),
+    url("https://images.unsplash.com/photo-1496293455970-f8581aae0e3b");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative; /* Required to position the arrow absolutely */
+}
+
+.hero h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.cta-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Animated Arrow */
+.hero .arrow-container {
+  position: absolute;
+  bottom: 20px; /* Adjust as needed for spacing */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero .arrow {
+  width: 40px;
+  height: 40px;
+  color: white;
+  animation: bounce 2s infinite; /* Bounce animation */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  10% {
+    transform: translateY(30px);
+  }
+}
+
+
+.how-it-works {
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+
+.how-it-works .intro h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.how-it-works .intro p {
+  font-size: 1.1rem;
+  color: #555;
+  padding: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+}
+
+.circle {
+  width: 60px;
+  height: 60px;
+  background-color: #333333;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;    
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Try It Button */
+.try-it-container {
+  margin-top: 2rem;
+  text-align: center; /* Center the button */
+}
+
+.try-it-button {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background-color: #23b939; /* Blue color for emphasis */
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.try-it-button:hover {
+  background-color: #188729; /* Darker blue on hover */
+}
+
+
+/* CreateCrates Page */
+.create-crates {
+  background-color: #ffffff; /* Dark background */
+  min-height: 100vh; /* Ensure full viewport height */
+}
+
+/* CreateCrates Page */
+.create-crates .content {
+  margin-top: 7rem; /* Matches the height of .navbar.slim */
+  text-align: center;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .steps {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
