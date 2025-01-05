@@ -45,7 +45,7 @@ const SpotifyLogin = () => {
     <div style={{ padding: '20px', textAlign: 'center' }}>
       <h1>Spotify Playlist Fetcher</h1>
       {!accessToken && (
-        <button onClick={handleLogin} style={{ marginBottom: '20px' }}>
+        <button className="cta-button" onClick={handleLogin} style={{ marginBottom: '20px' }}>
           Log in with Spotify
         </button>
       )}

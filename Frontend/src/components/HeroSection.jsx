@@ -1,10 +1,12 @@
 import React from 'react';
 
-const HeroSection = () => {
+const HeroSection = ({ scrollToRef }) => {
   return (
     <header className="hero">
       <h1>Discover Vinyl Tailored to Your Taste</h1>
-      <button className="cta-button">Get started</button>
+      <button className="cta-button" onClick={scrollToRef}>
+        Get started
+      </button>
       <div className="arrow-container">
         <svg
           className="arrow"

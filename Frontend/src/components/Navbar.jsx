@@ -16,8 +16,15 @@ const Navbar = ({ variant = "landing" }) => {
         <li>
           {user ? (
             <div className="user-info">
-              <span>{user.email}</span>
-              <button onClick={logout} className="logout-button">Logout</button>
+              <div className="user-avatar">
+                {user.email.charAt(0).toUpperCase()} {/* First letter of the email */}
+              </div>
+              <div className="dropdown">
+                <button className="dropdown-button">{user.email.split('@')[0]}</button>
+                <div className="dropdown-content">
+                  <button onClick={logout} className="logout-button">Logout</button>
+                </div>
+              </div>
             </div>
           ) : (
             <Link to="/login" className="login-button">Login</Link>
