@@ -255,9 +255,30 @@ a {
   padding: 2rem;
 }
 
+.login-page, .register-page {
+  padding-top: 100px;  
+  margin: 50px auto;
+  text-align: center;
+}
+
+.login-page .content, .register-page .content {
+  margin-bottom: 20px;
+}
+
+.login-page h1, .register-page h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.login-page p, .register-page p {
+  color: #666;
+}
+
+
 @media (max-width: 768px) {
   .steps {
     flex-direction: column;
     gap: 1.5rem;
   }
 }
+

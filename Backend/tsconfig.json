@@ -1,12 +1,13 @@
 {
-    "compilerOptions": {
-      "target": "ES6",
-      "module": "CommonJS",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "typeRoots": ["node_modules/@types"],
-      "types": ["node"] // Add this line
-    }
-  }
-  
+  "compilerOptions": {
+    "rootDir": "./src", // All source files should be in the `src` folder
+    "outDir": "./dist", // Compiled files will go to the `dist` folder
+    "allowJs": true,
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*", "src/config/firebaseConfig.js"], // Include only the `src` folder
+  "exclude": ["dist", "../backend/*.js"] // Exclude output and external JS files
+}
