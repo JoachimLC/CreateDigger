@@ -1,29 +1,37 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import * as AuthService from '../services/authService';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
+  // Fetch user session on app load
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email');
-    if (token && email) {
-      setUser({ token, email });
-    }
-    setLoading(false); // Mark loading as complete
+    const fetchUser = async () => {
+      try {
+        const userData = await AuthService.getUser();
+        setUser(userData);
+      } catch (error) {
+        console.error('Failed to fetch user:', error.message);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
   }, []);
 
-  const login = (token, email) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('email', email);
-    setUser({ token, email });
+  const login = async (email, password) => {
+    await AuthService.login(email, password);
+    const userData = await AuthService.getUser(); // Fetch user data after login
+    setUser(userData);
   };
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
+  const logout = async () => {
+    await AuthService.logout();
     setUser(null);
   };
 

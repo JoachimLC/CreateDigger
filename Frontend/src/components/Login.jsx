@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { login as loginService } from '../services/authService';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
-
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useAuth();
@@ -10,14 +8,12 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { token } = await loginService(email, password);
-      login(token, email); // Update context state
-      navigate('/')
+      await login(email, password); // Login via AuthContext
+      navigate('/create-crates');
     } catch (err) {
       setError(err.message);
     }
