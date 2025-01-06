@@ -1,37 +1,29 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import * as AuthService from '../services/authService';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Add loading state
 
-  // Fetch user session on app load
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await AuthService.getUser();
-        setUser(userData);
-      } catch (error) {
-        console.error('Failed to fetch user:', error.message);
-        setUser(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUser();
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email');
+    if (token && email) {
+      setUser({ token, email });
+    }
+    setLoading(false); // Mark loading as complete
   }, []);
 
-  const login = async (email, password) => {
-    await AuthService.login(email, password);
-    const userData = await AuthService.getUser(); // Fetch user data after login
-    setUser(userData);
+  const login = (token, email) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('email', email);
+    setUser({ token, email });
   };
 
-  const logout = async () => {
-    await AuthService.logout();
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
     setUser(null);
   };
 

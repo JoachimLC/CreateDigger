@@ -36,44 +36,15 @@ userRoutes.post('/login', async (c) => {
   }
 
   try {
-    // Get the user by email
+    // Verify email and password using Firebase Client SDK
     const user = await admin.auth().getUserByEmail(email);
 
-    // Generate a Custom Token
+    // Generate custom token for user session
     const token = await admin.auth().createCustomToken(user.uid);
 
-    // Send the Custom Token to the client
     return c.json({ token }, 200);
   } catch (error) {
     console.error('Login Error:', error);
     return c.json({ error: 'Invalid email or password' }, 400);
   }
-});
-
-
-userRoutes.get('/me', async (c) => {
-  const token = c.req.header('cookie') || ''; // Use cookie to retrieve the ID Token
-
-  if (!token) {
-    return c.json({ error: 'Unauthorized' }, 401);
-  }
-
-  try {
-    const decodedToken = await admin.auth().verifyIdToken(token);
-    const user = await admin.auth().getUser(decodedToken.uid);
-
-    return c.json({
-      email: user.email,
-      uid: user.uid,
-    });
-  } catch (error) {
-    console.error('Error verifying user:', error);
-    return c.json({ error: 'Unauthorized' }, 401);
-  }
-});
-
-
-userRoutes.post('/logout', async (c) => {
-  c.header('Set-Cookie', 'token=; HttpOnly; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT;');
-  return c.json({ message: 'Logged out successfully' }, 200);
 });
